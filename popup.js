@@ -40,3 +40,18 @@ document.addEventListener("DOMContentLoaded", () => {
 function formatTitle(title) {
   return title.trim().replace(/\s+/g, " ");
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const showLogin = true;
+  const loginButton = document.getElementById("loginButton");
+
+  if (showLogin) {
+    loginButton.style.display = "block"; // Show the button
+  } else {
+      loginButton.style.display = "none"; // Hide the button
+  }
+
+  loginButton.addEventListener("click", () => {
+      window.open('auth.html', '_blank');
+  });
+});

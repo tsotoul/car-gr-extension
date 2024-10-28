@@ -20,11 +20,25 @@ function injectTrackButton() {
 
     trackIcon.onclick = () => {
       const listingUrl = window.location.href;
+      
       chrome.storage.sync.get("trackedListings", (data) => {
         const listings = data.trackedListings || [];
-        listings.push({ url: listingUrl, price: getCurrentPrice(), title: getListingTitle() });
-        chrome.storage.sync.set({ trackedListings: listings });
-        alert("Listing added to track!");
+
+        // Check that the car is already in the list
+        const isDuplicate = listings.some(listing => listing.url === listingUrl);
+        if (isDuplicate) {
+          alert("This car is already in your tracked listings.");
+          return;
+        }
+
+        // Check that there are not more that 10 listings in the list
+        if(listings.length >= 10){
+          alert("You have reached the limit of 10 tracked listings. Please remove one to add a new listing.");
+        } else {
+          listings.push({ url: listingUrl, price: getCurrentPrice(), title: getListingTitle() });
+          chrome.storage.sync.set({ trackedListings: listings });
+          alert("Listing added to track!");
+        }
       });
     }
 
@@ -48,3 +62,5 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 // Initial call in case content is already loaded
 injectTrackButton();
+
+

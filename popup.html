@@ -36,6 +36,27 @@
       text-align: center;
       margin-top: 20px;
     }
+    #loginButton {
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #6c63ff, #007bff);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        #loginButton:hover {
+            background: linear-gradient(135deg, #5a54c8, #3c3e99);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        #loginButton:active {
+            transform: translateY(0);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
   </style>
 </head>
 <body>
@@ -52,6 +73,8 @@
     <tbody id="listings"></tbody>
   </table>
   <div id="noListings" class="no-listings" style="display: none;">No listings tracked yet!</div>
+
+  <button id="loginButton">Login / Signup</button>
   
   <script src="popup.js"></script>
 </body>
