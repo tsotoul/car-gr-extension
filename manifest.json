@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "Car Listing Tracker",
+    "version": "1.0",
+    "description": "Monitors the price of car listings on car.gr and alerts when there's a drop.",
+    "permissions": ["storage", "alarms", "notifications", "activeTab", "scripting"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "host_permissions": ["https://www.car.gr/*"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+      }
+    },
+    "content_scripts": [
+        {"matches": ["https://www.car.gr/*"],
+        "js": ["content.js"]
+        }
+    ],
+    "icons": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    }
+}
+  
