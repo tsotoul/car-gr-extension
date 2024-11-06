@@ -1,4 +1,4 @@
-chrome.alarms.create("priceCheck", { periodInMinutes: 1440 });
+chrome.alarms.create("priceCheck", { periodInMinutes: 720 });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "priceCheck") {
@@ -29,7 +29,12 @@ chrome.alarms.onAlarm.addListener((alarm) => {
                     
                     // Update the listing with the new price
                     listings[index].price = newPrice;
+                    listings[index].priceChanged = true;
+                    listings[index].priceDirection = newPrice > listing.price ? 'up' : 'down';
                     chrome.storage.sync.set({ trackedListings: listings });
+                  } else {
+                    listings[index].priceChanged = false;
+                    chrome.storage.sync.set({trackedListings: listings});
                   }
                   console.log("Price checked for listing:", listing.url);
                 }

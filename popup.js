@@ -14,10 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = formatTitle(listing.title);
 
         const row = document.createElement("tr");
+        const arrowIcon = listing.priceChanged
+        ? listing.priceDirection === 'up'
+          ? '<i class="fas fa-arrow-up text-danger" title="Price has increased"></i>'
+          : '<i class="fas fa-arrow-down text-success" title="Price has decreased"></i>'
+        : '';
         row.innerHTML = `
           <th scope="row">${index + 1}</th>
           <td><a href="${listing.url}" target="_blank">${title}</a></td>
-          <td>€${listing.price}</td>
+          <td>€${listing.price} ${arrowIcon}</td>
           <td><i class="fas fa-trash remove-icon" data-index="${index}" title="Remove"></i></td>
         `;
         listingsContainer.appendChild(row);
