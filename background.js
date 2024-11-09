@@ -5,6 +5,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     chrome.storage.sync.get("trackedListings", (data) => {
       const listings = data.trackedListings || [];
       let notificationCount = 0;
+      let processedCount = 0;
 
       listings.forEach((listing, index) => {
         setTimeout(() => { // Add delay with setTimeout
@@ -22,7 +23,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
                   const newPrice = parseFloat(results[0].result);
 
                   // Check if the price has changed
-                  if (newPrice === listing.price) {
+                  if (newPrice !== listing.price) {
                     notificationCount++;
                     chrome.action.setBadgeText({ text: notificationCount.toString() });
                     chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
@@ -39,6 +40,12 @@ chrome.alarms.onAlarm.addListener((alarm) => {
                   console.log("Price checked for listing:", listing.url);
                 }
                 chrome.tabs.remove(tab.id);
+                processedCount++;
+
+                if(processedCount === listings.length && notificationCount === 0){
+                    chrome.action.setBadgeText({ text: '✔️' });
+                    chrome.action.setBadgeBackgroundColor({ color: '#00FF00' }); // Set the badge background color to green
+                }
               }
             );
           });
@@ -47,21 +54,3 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     });
   }
 });
-
-function testNotification() {
-    chrome.notifications.create({
-      type: "basic",
-      iconUrl: "images/icon48.png", // Ensure the path to your icon is correct
-      title: "Test Notification",
-      message: "This is a test notification for your extension.",
-    });
-    chrome.action.setBadgeText({ text: "1" });
-    chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
-  }
-  
-  
-  
-  
-  
-
-  
