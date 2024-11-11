@@ -1,4 +1,4 @@
-chrome.alarms.create("priceCheck", { periodInMinutes: 720 });
+chrome.alarms.create("priceCheck", { periodInMinutes: 180 });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "priceCheck") {
