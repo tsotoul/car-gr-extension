@@ -47,7 +47,7 @@ function formatTitle(title) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const showLogin = true;
+  const showLogin = false;
   const loginButton = document.getElementById("loginButton");
 
   if (showLogin) {
