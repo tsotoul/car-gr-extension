@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Car Tracker",
     "version": "1.0",
-    "description": "Monitors the price of car listings on car.gr and alerts when there's a change. /n Παρακολουθεί την τιμή αποθηκευμένων αγγελιών και ειδοποιεί αν έχει αλλάξει.",
+    "description": "Παρακολουθεί την τιμή αποθηκευμένων αγγελιών και ειδοποιεί αν έχει αλλάξει.",
     "permissions": ["storage", "alarms", "notifications", "activeTab", "scripting"],
     "background": {
       "service_worker": "background.js"
