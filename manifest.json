@@ -3,7 +3,7 @@
     "name": "Car Tracker",
     "version": "1.0",
     "description": "Παρακολουθεί την τιμή αποθηκευμένων αγγελιών και ειδοποιεί αν έχει αλλάξει.",
-    "permissions": ["storage", "alarms", "notifications", "activeTab", "scripting"],
+    "permissions": ["storage", "alarms", "activeTab", "scripting"],
     "background": {
       "service_worker": "background.js"
     },
